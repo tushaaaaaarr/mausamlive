@@ -242,7 +242,6 @@ This project is open source and available under the MIT License.
 ## Contact & Support 📧
 
 - **GitHub**: https://github.com/tushaaaaaarr/mausamlive
-- **Live App**: https://mausamlive.vercel.app
 - **Issues**: Please report bugs on GitHub Issues
 - **Suggestions**: Open a discussion or pull request
 
@@ -250,7 +249,6 @@ This project is open source and available under the MIT License.
 
 - **OpenWeather API** - For reliable weather data
 - **Google Gemini API** - For powerful AI insights
-- **Vercel** - For seamless deployment platform
 - **Inter Font** - For beautiful typography
 
 ---
