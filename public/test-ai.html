@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 5px 10px 0;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        .result {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            word-break: break-all;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .error {
+            background: #fee;
+            color: #c00;
+        }
+        .success {
+            background: #efe;
+            color: #0c0;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Weather API Test</h1>
+
+    <div class="test-section">
+        <h2>Test Weather Summary</h2>
+        <button onclick="testSummary()">Test Summary</button>
+        <div id="summary-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Activities</h2>
+        <button onclick="testActivities()">Test Activities</button>
+        <div id="activities-result" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Health Advisory</h2>
+        <button onclick="testHealthAdvisory()">Test Health Advisory</button>
+        <div id="health-result" class="result"></div>
+    </div>
+
+    <script>
+        async function testSummary() {
+            const resultDiv = document.getElementById('summary-result');
+            resultDiv.textContent = 'Loading...';
+            try {
+                const response = await fetch('/api/ai/summary?city=London&temp=20&condition=Cloudy&humidity=65&windSpeed=10&feelsLike=18');
+                const data = await response.json();
+                resultDiv.className = 'result success';
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = 'Error: ' + error.message;
+            }
+        }
+
+        async function testActivities() {
+            const resultDiv = document.getElementById('activities-result');
+            resultDiv.textContent = 'Loading...';
+            try {
+                const response = await fetch('/api/ai/activities?temp=20&condition=Sunny&windSpeed=5&humidity=60');
+                const data = await response.json();
+                resultDiv.className = 'result success';
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = 'Error: ' + error.message;
+            }
+        }
+
+        async function testHealthAdvisory() {
+            const resultDiv = document.getElementById('health-result');
+            resultDiv.textContent = 'Loading...';
+            try {
+                const response = await fetch('/api/ai/health-advisory?temp=15&condition=Rainy&humidity=80&windSpeed=20');
+                const data = await response.json();
+                resultDiv.className = 'result success';
+                resultDiv.textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.textContent = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
